@@ -14,15 +14,6 @@ defmodule SudokuFinal do
     send_resp(conn, 200, Poison.encode!(%{"your value was" => value}))
   end
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> SudokuFinal.hello()
-      :world
-
-  """
   def hello do
     :world
   end
