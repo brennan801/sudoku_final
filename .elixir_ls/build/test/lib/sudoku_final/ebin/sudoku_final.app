@@ -1,7 +1,7 @@
 {application,sudoku_final,
              [{applications,[kernel,stdlib,elixir,logger,poison,plug_cowboy]},
               {description,"sudoku_final"},
-              {modules,['Elixir.AcceptedBoard','Elixir.Cell',
+              {modules,['Elixir.AcceptedBoard','Elixir.Cell','Elixir.Solver',
                         'Elixir.StartingBoard','Elixir.SudokuFinal',
                         'Elixir.SudokuFinal.Application']},
               {registered,[]},

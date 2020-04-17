@@ -30,11 +30,11 @@ defmodule SudokuFinalTest do
   # end
 
   test "Row sum = 45" do
-    row = [ %Cell{x: 1,y: 9,value: 4}, %Cell{x: 2,y: 9,value: 3}, %Cell{x: 3,y: 9,value: 5}, %Cell{x: 4,y: 9,value: 2}, %Cell{x: 5,y: 9,value: 6}, %Cell{x: 6,y: 9,value: 9}, %Cell{x: 7,y: 9,value: 7}, %Cell{x: 8,y: 9,value: 8}, %Cell{x: 9,y: 9,value: 1}]
-    |> Enum.filter(fn {x, _} -> x == :value end)
+    row_sum = [ %Cell{x: 1,y: 9,value: 4}, %Cell{x: 2,y: 9,value: 3}, %Cell{x: 3,y: 9,value: 5}, %Cell{x: 4,y: 9,value: 2}, %Cell{x: 5,y: 9,value: 6}, %Cell{x: 6,y: 9,value: 9}, %Cell{x: 7,y: 9,value: 7}, %Cell{x: 8,y: 9,value: 8}, %Cell{x: 9,y: 9,value: 1}]
+    |> Enum.map(fn %Cell{value: value} ->  value end)
     |> IO.inspect()
     |>Enum.sum()
-    assert row == 45
+    assert row_sum == 45
   end
 
   test "Column sum = 45" do
