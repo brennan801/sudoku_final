@@ -85,19 +85,22 @@ defmodule Solver do
   end
 
   def solve_board(current_board)do
-    IO.inspect(current_board, label: "starting solve board", limit: 1)
     current_board
     |> Enum.reduce({:false, current_board}, fn %Cell{}, acc ->
-      IO.inspect(acc, label: "acc inside reduce", limit: 1)
       case acc do
-        {:true, board} -> board
+        {:true, board} -> {:true, board}
         {:false, board} ->
           case find_empty_cells(board) do
-            [] -> {:false, board}
+            [] -> {:true, board}
             empty_cells -> guess(empty_cells, board)
           end
+        board -> board
       end
     end)
+    |> case do
+      {:true, board} -> board
+      other -> other
+    end
   end
 
   def guess([first | _], current_board) do

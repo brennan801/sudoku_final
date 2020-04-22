@@ -65,7 +65,9 @@ defmodule SolverTest do
         %Cell{x: 1,y: 2,value: 2}, %Cell{x: 2,y: 2,value: 4}, %Cell{x: 3,y: 2,value: 8}, %Cell{x: 4,y: 2,value: 9}, %Cell{x: 5,y: 2,value: 5}, %Cell{x: 6,y: 2,value: 7}, %Cell{x: 7,y: 2,value: 1}, %Cell{x: 8,y: 2,value: 3}, %Cell{x: 9,y: 2,value: 6},
         %Cell{x: 1,y: 1,value: 7}, %Cell{x: 2,y: 1,value: 6}, %Cell{x: 3,y: 1,value: 3}, %Cell{x: 4,y: 1,value: 4}, %Cell{x: 5,y: 1,value: 1}, %Cell{x: 6,y: 1,value: 8}, %Cell{x: 7,y: 1,value: 2}, %Cell{x: 8,y: 1,value: 5}, %Cell{x: 9,y: 1,value: 9},
       ]
-      {:false, actual_board} = Solver.solve_board(starting_board)
+      actual_board = Solver.solve_board(starting_board)
+      # |> IO.inspect(label: "result of solved board.")
+      # {:true, actual_board} = result
       assert(actual_board == expected_board)
     end
 end
