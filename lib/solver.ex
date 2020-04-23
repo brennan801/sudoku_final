@@ -113,6 +113,7 @@ defmodule Solver do
               {:false, _} ->
                 set_cell(current_board, first, possibility)
                 |> solve_board()
+              board -> board
             end
       end)
     end
