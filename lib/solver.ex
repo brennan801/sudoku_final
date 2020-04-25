@@ -142,5 +142,12 @@ defmodule Solver do
     |> unused_values()
   end
 
+  def compare_boards( board1, board2 ) do
+    merged_board = Enum.concat(board1, board2)
+    |> IO.inspect
+  end
+
+
+
 end
 

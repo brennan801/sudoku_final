@@ -12,6 +12,7 @@ defmodule SudokuFinal.Application do
                             plug: SudokuFinal,
                             options: [port: 4000]
                            )
+    
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
