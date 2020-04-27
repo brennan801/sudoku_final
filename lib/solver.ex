@@ -144,7 +144,11 @@ defmodule Solver do
 
   def compare_boards( board1, board2 ) do
     merged_board = Enum.concat(board1, board2)
-    |> IO.inspect
+    |> Enum.uniq()
+    case Enum.count(merged_board) do
+      81 -> true
+      _ -> false
+    end
   end
 
 
