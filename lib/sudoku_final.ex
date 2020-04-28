@@ -9,7 +9,7 @@ defmodule SudokuFinal do
 
   get "/" do
     IO.inspect(conn)
-    send_resp(conn, 200, "Welcome to suduku challenge. Please go to /request_board to get the starting board.")
+    send_resp(conn, 200, "Welcome to suduku challenge. Please go to /instructions to start the test.")
     |> IO.inspect
   end
   post "/endpoint" do
@@ -37,7 +37,7 @@ defmodule SudokuFinal do
     # send_resp(conn, 200,"time")
   end
 
-  get "instructions" do
+  get "/instructions" do
     send_resp(conn, 200, "Start by getting the board by going to /request_board. This will send the starting board as JSON. You need to solve the board and send it back at /send_completed_board. We will check your sent board for correctness and send back a responce if it is right or wrong.")
   end
 
@@ -55,8 +55,6 @@ defmodule SudokuFinal do
   ]
     )
     
-
-
     curr_boar= Enum.sort(Poison.decode!(correctBoard))
     |>IO.inspect
  
