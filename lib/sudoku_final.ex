@@ -1,14 +1,15 @@
 defmodule SudokuFinal do
   use Plug.Router
 
+  plug(Plug.Logger)
+
   plug :match
   plug(Plug.Parsers, parsers: [:json], json_decoder: Poison)
   plug :dispatch
 
   get "/" do
     IO.inspect(conn)
-    conn
-    send_resp(conn, 200, "Welcome to suduku challenge. Please go to /send_board to get the startign board.")
+    send_resp(conn, 200, "Welcome to suduku challenge. Please go to /request_board to get the startign board.")
     |> IO.inspect
   end
   post "/endpoint" do
@@ -21,7 +22,7 @@ defmodule SudokuFinal do
     :world
   end
 
-  get "/send_board" do
+  get "/request_board" do
     board = Poison.encode!(%{"board"=>
      [ %Cell{x: 1,y: 9,value: 0}, %Cell{x: 2,y: 9,value: 0}, %Cell{x: 3,y: 9,value: 0}, %Cell{x: 4,y: 9,value: 2}, %Cell{x: 5,y: 9,value: 6}, %Cell{x: 6,y: 9,value: 0}, %Cell{x: 7,y: 9,value: 7}, %Cell{x: 8,y: 9,value: 0}, %Cell{x: 9,y: 9,value: 1},
      %Cell{x: 1,y: 8,value: 6}, %Cell{x: 2,y: 8,value: 8}, %Cell{x: 3,y: 8,value: 0}, %Cell{x: 4,y: 8,value: 0}, %Cell{x: 5,y: 8,value: 7}, %Cell{x: 6,y: 8,value: 0}, %Cell{x: 7,y: 8,value: 0}, %Cell{x: 8,y: 8,value: 9}, %Cell{x: 9,y: 8,value: 0},
@@ -36,12 +37,35 @@ defmodule SudokuFinal do
     # send_resp(conn, 200,"time")
   end
 
-  post "/get_completed_board" do
-    # {status, body}= 
-    #   case conn.body_params do
-    #     %{"complete_board"=>complete_board} ->{200, check}
-    #   end
+  post "/send_completed_board" do
+    IO.inspect conn
+    {status, body} =
+      case conn.params do
+        %{"board" => board} -> {200, board}
+        _ -> {422, "error"}
+      end
+
+    #   IO.inspect body
+
+      # case Solver.compare_boards(correctBoard, board) do
+      #   :true -> send_resp(conn, 200, "that is correct")
+      #   _->  send_resp(conn, 200, "that is wrong")
+      # end
+
+    send_resp(conn, status, "Success!")
+
+
   end
+
+  post "/hello" do
+    IO.inspect conn.body_params # Prints JSON POST body
+    send_resp(conn, 200, "Success!")
+  end
+ 
+  match _ do
+    send_resp(conn, 404, "oops... Nothing here :(")
+  end
+
 end
 
 
