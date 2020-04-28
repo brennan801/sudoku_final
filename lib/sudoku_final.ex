@@ -9,7 +9,7 @@ defmodule SudokuFinal do
 
   get "/" do
     IO.inspect(conn)
-    send_resp(conn, 200, "Welcome to suduku challenge. Please go to /request_board to get the startign board.")
+    send_resp(conn, 200, "Welcome to suduku challenge. Please go to /request_board to get the starting board.")
     |> IO.inspect
   end
   post "/endpoint" do
